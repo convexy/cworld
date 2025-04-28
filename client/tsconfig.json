@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "outDir": "../dist/client",
+    "esModuleInterop": true,
+    "strict": true,
+  },
+  "include": [
+    "src"
+  ]
+}
