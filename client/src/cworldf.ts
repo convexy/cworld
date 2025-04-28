@@ -45,8 +45,6 @@ export class CWorldF {
 
     this.addHelper();
     this.addGround();
-
-    this.addBall();
   }
   addHelper() {
     const axesHelper = new THREE.AxesHelper(5);
@@ -69,20 +67,6 @@ export class CWorldF {
     groundMesh.rotation.x = -Math.PI / 2;
     groundMesh.receiveShadow = true;
     this.scene.add(groundMesh);
-  }
-
-  addBall() {
-    const ballBody = new CANNON.Body({
-      mass: 1,
-      shape: new CANNON.Sphere(1),
-      position: new CANNON.Vec3(0, 10, 0),
-      velocity: new CANNON.Vec3(-10, 0, -10),
-    });
-    const ballGeometry = new THREE.SphereGeometry(1);
-    const ballMaterial = new THREE.MeshPhongMaterial({ color: 0x00ffff });
-    const ballMesh = new THREE.Mesh(ballGeometry, ballMaterial);
-
-    this.addCObject(new CObject(ballBody, ballMesh))
   }
 
   addCObject(cobject: CObject) {
