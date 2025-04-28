@@ -27,6 +27,6 @@ const clock = new THREE.Clock();
 function animate() {
   const deltaTime = clock.getDelta();
   ccc.moveCamera(deltaTime);
-  cworldf.updateAndRender();
+  cworldf.updateAndRender(deltaTime);
 }
 cworldf.setAnimationLoop(animate);

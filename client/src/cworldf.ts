@@ -75,8 +75,8 @@ export class CWorldF {
     this.cobjects.push(cobject);
   }
 
-  updateAndRender() {
-    this.physics.step(1 / 60);
+  updateAndRender(deltaTime: number) {
+    this.physics.step(deltaTime);
     this.cobjects.forEach(cobject => {
       cobject.mesh.position.copy(cobject.body.position);
       cobject.mesh.quaternion.copy(cobject.body.quaternion);
