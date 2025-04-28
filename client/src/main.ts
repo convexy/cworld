@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 import { CWorldF } from "./cworldf";
-import { CCube, CBall } from "./cobjects"
+import { CObject, CCube, CBall } from "./cobjects"
 import { CCameraController } from "./ccameracontroller";
 
 const cworldf = new CWorldF();
@@ -15,6 +15,13 @@ for (let i = 0; i < 100; i++) {
   const cball = new CBall({ mass: i + 1, position: { x: 1, y: 3 + i, z: -1 }, velocity: { x: 0, y: 10, z: 0 }, size: 0.1 });
   cworldf.addCObject(cball);
 }
+
+CObject.loader.load("/assets/models/book.glb", (gltf) => {
+  cworldf.scene.add(gltf.scene);
+  gltf.scene.scale.set(10, 10, 10);
+  gltf.scene.position.set(0, 2, 0);
+});
+
 
 const clock = new THREE.Clock();
 function animate() {

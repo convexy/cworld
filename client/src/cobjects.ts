@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import * as CANNON from "cannon";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 
 interface CObjectOptions {
   mass?: number,
@@ -9,11 +10,14 @@ interface CObjectOptions {
 }
 
 export class CObject {
+  static loader: GLTFLoader = new GLTFLoader();
   body: CANNON.Body;
   mesh: THREE.Object3D;
   constructor(body: CANNON.Body, mesh: THREE.Object3D) {
     this.body = body;
     this.mesh = mesh;
+    this.mesh.castShadow = true;
+    this.mesh.receiveShadow = true;
   }
 }
 
