@@ -1,10 +1,11 @@
 import * as THREE from "three";
+import * as CANNON from "cannon";
 
 import { CWorldF } from "./cworldf";
 import { CObject, CCube, CBall } from "./cobjects"
 import { CCameraController } from "./ccameracontroller";
 
-const cworldf = new CWorldF();
+const cworldf = new CWorldF({ helper: true, ground: true });
 const ccc = new CCameraController(cworldf.camera);
 
 for (let i = 0; i < 100; i++) {
@@ -16,11 +17,15 @@ for (let i = 0; i < 100; i++) {
   cworldf.addCObject(cball);
 }
 
-CObject.loader.load("/assets/models/book.glb", (gltf) => {
-  cworldf.scene.add(gltf.scene);
-  gltf.scene.scale.set(10, 10, 10);
-  gltf.scene.position.set(0, 2, 0);
-});
+// CObject.loader.load("/assets/models/book.glb", (gltf) => {
+//   gltf.scene.scale.set(10, 10, 10);
+//   const book = new CObject(new CANNON.Body({
+//     mass: 1,
+//     shape: new CANNON.Box(new CANNON.Vec3(1, 0.02, 1)),
+//     position: new CANNON.Vec3(2, 3, 2),
+//   }), gltf.scene)
+//   cworldf.addCObject(book);
+// });
 
 
 const clock = new THREE.Clock();
