@@ -55,3 +55,18 @@ export class CCube extends CObject {
     super(body, mesh);
   }
 }
+
+export class CCylinder extends CObject {
+  constructor(options?: { mass?: number, h?: number, r?: number }) {
+    const height = options?.h ?? 1;
+    const radius = options?.r ?? 1;
+    const body = new CANNON.Body({
+      mass: options?.mass ?? 1,
+      shape: new CANNON.Cylinder(radius, radius, height, 8),
+    });
+    const geometry = new THREE.CylinderGeometry(radius, radius, height, 8);
+    const material = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
+    const mesh = new THREE.Mesh(geometry, material);
+    super(body, mesh);
+  }
+}
